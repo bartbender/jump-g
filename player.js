@@ -53,4 +53,13 @@ class Player {
                  this.y > obstacle.y + obstacle.height ||
                  this.y + this.height < obstacle.y);
     }
+
+    reset() {
+        this.x = this.canvas.width * 0.15;
+        this.y = this.canvas.height - 50 - this.height - 64;
+        this.speedY = 0;
+        this.onGround = true;
+        this.frameX = 1;
+        this.frameY = 1;
+    }
 }
