@@ -59,7 +59,7 @@ window.onload = function() {
             groundTiles.push(new Ground(i * 64, canvas.height - groundHeight - 64, '3,1', groundImage));
         }
 
-        collisionManager = new CollisionManager(player, obstacles, assets); // Initialize collisionManager inside the init function
+        collisionManager = new CollisionManager(player, obstacles, groundTiles, assets); // Initialize collisionManager inside the init function
     }
 
     function handleInput() {
