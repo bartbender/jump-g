@@ -44,6 +44,8 @@ window.onload = function() {
     });
 
     // Game functions
+    let collisionManager; // Define collisionManager variable outside the callback function
+
     function init() {
         player = new Player(playerMargin, canvas.height - groundHeight - 50 - 64, playerImage, canvas); // Ajustar la posición inicial del jugador
         obstacles = [];
@@ -57,6 +59,7 @@ window.onload = function() {
             groundTiles.push(new Ground(i * 64, canvas.height - groundHeight - 64, '3,1', groundImage));
         }
 
+        collisionManager = new CollisionManager(player, obstacles, assets); // Initialize collisionManager variable in the init function
         collisionManager.initialize();
     }
 
@@ -153,7 +156,6 @@ window.onload = function() {
             powerUp: 'powerUp.wav'
         }, function() {
             init();
-            const collisionManager = new CollisionManager(player, obstacles, assets);
             gameLoop();
         });
     });
