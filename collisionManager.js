@@ -8,8 +8,10 @@ class CollisionManager {
     }
 
     detectCollisions() {
+        const playerBox = this.getBoundingBox(this.player);
         for (let i = 0; i < this.obstacles.length; i++) {
-            if (this.player.collidesWith(this.obstacles[i])) {
+            const obstacleBox = this.getBoundingBox(this.obstacles[i]);
+            if (this.checkBoundingBoxCollision(playerBox, obstacleBox)) {
                 this.handlePlayerCollision(i);
             } else if (this.obstacles[i].x + this.obstacles[i].width < this.player.x && !this.obstacles[i].scored) {
                 this.handleObstaclePassed(i);

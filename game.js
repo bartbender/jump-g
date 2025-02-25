@@ -152,10 +152,8 @@ window.onload = function() {
             powerUp: 'powerUp.wav'
         }, function() {
             init();
+            const collisionManager = new CollisionManager(player, obstacles, assets);
             gameLoop();
         });
     });
-
-    // Import and instantiate the CollisionManager class
-    const collisionManager = new CollisionManager(player, obstacles, assets);
 }
