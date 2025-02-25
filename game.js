@@ -11,8 +11,7 @@ window.onload = function() {
     let obstacleImage = new Image();
     obstacleImage.src = 'assets.png';
     let groundImage = new Image();
-    groundImage.src = 'assets.png';
-
+    
     // Game variables
     let player;
     let obstacles = [];
@@ -57,6 +56,8 @@ window.onload = function() {
         for (let i = 0; i < canvas.width / 64; i++) {
             groundTiles.push(new Ground(i * 64, canvas.height - groundHeight - 64, '3,1', groundImage));
         }
+
+        collisionManager.initialize();
     }
 
     function handleInput() {

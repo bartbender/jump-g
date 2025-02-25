@@ -38,6 +38,10 @@ class CollisionManager {
     resetGame() {
         this.lives = 3;
         this.score = 0;
+        this.initialize();
+    }
+
+    initialize() {
         this.player.reset();
         this.obstacles.length = 0;
     }

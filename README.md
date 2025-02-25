@@ -18,6 +18,25 @@ En Jump-G, el jugador controla un personaje que debe saltar sobre obstáculos pa
 
 El propósito de este juego es servir como un pequeño curso de programación con IA para chicos de colegio e instituto. A través del desarrollo de este juego, los estudiantes pueden aprender conceptos básicos de programación, manejo de eventos, animaciones, y gestión de colisiones.
 
+## Gestión de colisiones
+
+La gestión de colisiones en Jump-G se realiza mediante la clase `CollisionManager`. Esta clase se encarga de detectar colisiones entre el jugador y los obstáculos, así como de manejar las consecuencias de dichas colisiones.
+
+### Métodos principales
+
+- `detectCollisions()`: Detecta colisiones entre el jugador y los obstáculos.
+- `handlePlayerCollision(index)`: Maneja la colisión del jugador con un obstáculo.
+- `handleObstaclePassed(index)`: Maneja el caso en que el jugador pasa un obstáculo sin colisionar.
+- `resetGame()`: Reinicia el juego, restableciendo las vidas y la puntuación.
+- `initialize()`: Inicializa el estado del jugador y los obstáculos.
+
+### Ejemplo de uso
+
+```javascript
+const collisionManager = new CollisionManager(player, obstacles, assets);
+collisionManager.detectCollisions();
+```
+
 ## Licencia
 
 Este proyecto está licenciado bajo la Licencia Pública General de GNU, versión 3. Puedes encontrar el texto completo de la licencia en los archivos [LICENSE](./LICENSE) (en inglés) y [LICENSE_ES](./LICENSE_ES) (en español).
