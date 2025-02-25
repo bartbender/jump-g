@@ -1,7 +1,8 @@
 class CollisionManager {
-    constructor(player, obstacles, assets) {
+    constructor(player, obstacles, groundTiles, assets) {
         this.player = player;
         this.obstacles = obstacles;
+        this.groundTiles = groundTiles;
         this.assets = assets;
         this.lives = 3;
         this.score = 0;
@@ -9,12 +10,22 @@ class CollisionManager {
 
     detectCollisions() {
         const playerBox = this.getBoundingBox(this.player);
+        
+        // Check collisions with obstacles
         for (let i = 0; i < this.obstacles.length; i++) {
             const obstacleBox = this.getBoundingBox(this.obstacles[i]);
             if (this.checkBoundingBoxCollision(playerBox, obstacleBox)) {
                 this.handlePlayerCollision(i);
             } else if (this.obstacles[i].x + this.obstacles[i].width < this.player.x && !this.obstacles[i].scored) {
                 this.handleObstaclePassed(i);
+            }
+        }
+
+        // Check collisions with ground tiles
+        for (let i = 0; i < this.groundTiles.length; i++) {
+            const groundBox = this.getBoundingBox(this.groundTiles[i]);
+            if (this.checkBoundingBoxCollision(playerBox, groundBox)) {
+                this.handleGroundCollision();
             }
         }
     }
@@ -33,6 +44,10 @@ class CollisionManager {
     handleObstaclePassed(index) {
         this.score++;
         this.obstacles[index].scored = true;
+    }
+
+    handleGroundCollision() {
+        // Handle collision with ground tiles if necessary
     }
 
     resetGame() {

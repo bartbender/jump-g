@@ -44,6 +44,8 @@ window.onload = function() {
     });
 
     // Game functions
+    let collisionManager; // Declare collisionManager outside the init function
+
     function init() {
         player = new Player(playerMargin, canvas.height - groundHeight - 50 - 64, playerImage, canvas); // Ajustar la posición inicial del jugador
         obstacles = [];
@@ -57,7 +59,7 @@ window.onload = function() {
             groundTiles.push(new Ground(i * 64, canvas.height - groundHeight - 64, '3,1', groundImage));
         }
 
-        const collisionManager = new CollisionManager(player, obstacles, assets);
+        collisionManager = new CollisionManager(player, obstacles, assets); // Initialize collisionManager inside the init function
     }
 
     function handleInput() {
