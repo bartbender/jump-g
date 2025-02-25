@@ -66,24 +66,6 @@ window.onload = function() {
         }
     }
 
-    function handleCollisions() {
-        for (let i = 0; i < obstacles.length; i++) {
-            if (player.collidesWith(obstacles[i])) {
-                lives--;
-                obstacles.splice(i, 1);
-                assets.sounds.hitHurt.play(); // Reproducir sonido al colisionar
-                if (lives <= 0) {
-                    assets.sounds.explosion.play(); // Reproducir sonido al morir
-                    alert('Game Over');
-                    init();
-                }
-            } else if (obstacles[i].x + obstacles[i].width < player.x && !obstacles[i].scored) {
-                score++;
-                obstacles[i].scored = true;
-            }
-        }
-    }
-
     function handleTriggers() {
         // Implementar lógica de triggers si es necesario
     }
@@ -146,7 +128,7 @@ window.onload = function() {
 
     function gameLoop() {
         handleInput();
-        handleCollisions();
+        collisionManager.detectCollisions();
         handleTriggers();
         handleAnimations();
         updateItems();
@@ -173,4 +155,7 @@ window.onload = function() {
             gameLoop();
         });
     });
+
+    // Import and instantiate the CollisionManager class
+    const collisionManager = new CollisionManager(player, obstacles, assets);
 }
